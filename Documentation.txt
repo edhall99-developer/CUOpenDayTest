@@ -1,0 +1,17 @@
+Visual Changes:
+- The text colour contrast ratio is not good at all as the background is #A7A8AA and the event
+text is white so I have changed this to make it more readable
+
+
+Usability Changes:
+- I have added a list of buttons in a grid next to the grid of topics that is sticky once scrolled past so that the user
+ can more easily select the topic they wish to access. I have made it so that on mobile and tablet this stacks on top of the grid of 
+ topics and then has its own internal scroll so users can still have a filtering system even with the lkimited space of tablet and mobile
+- I have changed the way the events asre displayed to only show the next upcoming 
+event as the ui is getting very overwhelmed by the large number of events so I have 
+split this out to only shoow the next event occurence and then a show all button 
+that will launch a modal to display the rest of the events (To do this is I have added the nppm package 
+micromodal https://www.npmjs.com/package/micromodal?activeTab=readme)
+- I have increased the size of the font across the board as it was quite
+ small and hard to read
+- Added a download link for a map of the campus I found to assist users with finding the events

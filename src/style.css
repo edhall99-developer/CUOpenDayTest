@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  --cardiff-uni-red:rgb(182 30 22);
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -28,8 +29,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -42,8 +41,8 @@ h1 {
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  overflow: visible;
 }
 
 .logo {
@@ -70,13 +69,15 @@ h1 {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  color: white;
+  padding: 1em 2em;
+  background-color:var(--cardiff-uni-red);
+  font-size: 1.2em
 }
 button:hover {
   border-color: #646cff;
@@ -100,5 +101,160 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+
+
+.main-grid{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2em;
+  overflow: visible;
+  padding: 0 1em;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 5em;
+  background-color: white;
+}
+ .header-top{
+  display: flex;
+  gap: 2em;
+  align-items: center;
+
+ }
+.event-list{
+  list-style: none;
+  color: black;
+}
+
+/* Styles for the topic selectors */
+
+.topic-selectors{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: min-content;
+    gap: 1em;   
+    font-size: 14px;
+}
+.topic-selectors button{
+  font-size: 16px;
+  height: 100%;
+  padding: .5em;
+  height: 100%;
+  width: 100%;
+}
+
+.topic-selectors-wrapper {
+  position: sticky;
+  top: 15px;
+  align-self: start;   /* important inside grid */
+  z-index: 10;
+  background: white;
+}
+
+
+/* single topic styles */
+.topic-single{
+  font-size: 1.25em;
+}
+
+.topic-single img{
+  margin: 0;
+  min-height: 250px
+}
+
+.topic-single-info{
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.topic-single-info-inner{
+  padding:  .5em 0
+}
+.topic-single h2{
+  padding: .5em 0;
+}
+
+.next-event-info{
+  padding-bottom: .5em;
+}
+
+
+/* Modal for showing event details styles */
+
+.modal {
+  display: none;
+}
+
+.modal[aria-hidden="false"] {
+  display: block;
+}
+
+.topic-modal{
+  padding: 0
+}
+
+.topic-modal ul{
+  padding: .5em 1em
+}
+
+.close-modal{
+  font-size: 2em;
+  border: 0;
+  padding: .5em;
+  border-radius: 100px;
+}
+
+.modal-header{
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: .5em 1em
+}
+
+.event-list-modal-open{
+  border-radius: 0;
+  background-color: var(--cardiff-uni-red);
+  color: white;
+  font-size: 1em;
+}
+
+
+
+/* Responsive styles */
+
+@media (max-width:801px){
+  .main-grid{
+    grid-template-columns: 1fr !important;
+  }
+  .topic-selectors{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  
+    max-height: 300px;
+    overflow: scroll;
+  }
+  .topic-selectors-wrapper{
+    top: 0
+  }
+  .header{
+    flex-direction: column;
+    gap: .5em
+    
+  }
+  .header-top{
+    flex-direction: column;
+    gap: .5em;
+  }
+  .header-top a{
+    width: max-content;
+    align-self: center;
   }
 }
