@@ -185,6 +185,10 @@ button:focus-visible {
 .next-event-info{
   padding-bottom: .5em;
 }
+.event-map-link{
+  color: black;
+  text-decoration: underline;
+}
 
 
 /* Modal for showing event details styles */
