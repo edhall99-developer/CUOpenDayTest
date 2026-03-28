@@ -1,12 +1,15 @@
 
 
-export function renderEvents(programs: [{title: string, room: string}], modalId: string) {
+export function renderEvents(programs: [{ location: {postcode: string},title: string, room: string}], modalId: string) {
   if (!programs?.length) return '';
 
   
   
 
-  const formatTime = (prog: any) => {
+  const formatTime = (prog: {
+    start_time: string,
+    end_time: string
+  }) => {
     if (!prog?.start_time) return '';
 
     const start = new Date(prog.start_time).toLocaleTimeString([], {
@@ -34,7 +37,7 @@ export function renderEvents(programs: [{title: string, room: string}], modalId:
         <div class='next-event-info'>
           <div class="font-semibold text-lg">${programs[0].title}</div>
           <div class="text-base">${formatTime(programs[0])}</div>
-          ${programs[0].room ? `<div class="text-base">, ${programs[0].room}</div>` : ''}
+          ${programs[0].room ? `<a href='http://maps.google.com/?q=${programs[0].location.postcode}'><div class="text-base">, ${programs[0].room}</div></a>` : ''}
         </div>
       `
           : `<p class="text-xs text-gray-500">No upcoming events</p>`
@@ -47,7 +50,13 @@ export function renderEvents(programs: [{title: string, room: string}], modalId:
   `;
 }
 
-function renderModal(programs: any[], modalId: string, formatTime: any) {
+function renderModal(programs: [{
+  location: {
+    postcode: string
+  },
+  room: string,
+  title: string,
+}], modalId: string, formatTime: any) {
   return `
     <div class="modal micromodal-slide" id="${modalId}" aria-hidden="true">
       
@@ -82,7 +91,7 @@ function renderModal(programs: any[], modalId: string, formatTime: any) {
                 <li class='pb-4'>
                   <h4 class='font-semibold text-xl'>${prog.title}</h4>
                   <span class=' text-lg'>${formatTime(prog)}</span>
-                  ${prog.room ? `<span class='text-lg'>, ${prog.room}</span>` : ''}
+                  ${prog.room ? `<a href='http://maps.google.com/?q=${prog.location.postcode}'><span class='text-lg'>, ${prog.room}</span></a>` : ''}
                 </li>
               `;
             }).join('')}
