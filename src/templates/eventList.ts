@@ -1,6 +1,6 @@
 
 
-export function renderEvents(programs: [{ location: {postcode: string},title: string, room: string}], modalId: string) {
+export function renderEvents(programs: [{ location: {postcode: string, address:string},title: string, room: string}], modalId: string) {
   if (!programs?.length) return '';
 
   
@@ -37,7 +37,7 @@ export function renderEvents(programs: [{ location: {postcode: string},title: st
         <div class='next-event-info'>
           <div class="font-semibold text-lg">${programs[0].title}</div>
           <div class="text-base">${formatTime(programs[0])}</div>
-          ${programs[0].room ? `<a class='event-map-link' href='http://maps.google.com/?q=${programs[0].location.postcode}'><div class="text-base">, ${programs[0].room}</div></a>` : ''}
+          ${programs[0].room ? `<a class='event-map-link' href='http://maps.google.com/?q=${programs[0].location.postcode}${programs[0].location.address}'><div class="text-base">, ${programs[0].room}</div></a>` : ''}
         </div>
       `
           : `<p class="text-xs text-gray-500">No upcoming events</p>`
@@ -52,7 +52,8 @@ export function renderEvents(programs: [{ location: {postcode: string},title: st
 
 function renderModal(programs: [{
   location: {
-    postcode: string
+    postcode: string,
+    address:  string
   },
   room: string,
   title: string,
@@ -91,7 +92,7 @@ function renderModal(programs: [{
                 <li class='pb-4'>
                   <h4 class='font-semibold text-xl'>${prog.title}</h4>
                   <span class=' text-lg'>${formatTime(prog)}</span>
-                  ${prog.room ? `<a class='event-map-link' href='http://maps.google.com/?q=${prog.location.postcode}'><span class='text-lg'>, ${prog.room}</span></a>` : ''}
+                  ${prog.room ? `<a class='event-map-link' href='http://maps.google.com/?q=${prog.location.postcode}${prog.location.address}'><span class='text-lg'>, ${prog.room}</span></a>` : ''}
                 </li>
               `;
             }).join('')}
